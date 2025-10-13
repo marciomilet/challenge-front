@@ -6,11 +6,11 @@ interface TableTitleSearchProps {
 
 export function TableTitleSearch(props: TableTitleSearchProps) {
     return(
-    <div className="flex gap-3 items-center">
+    <div className="flex gap-3 items-center px-5">
         <h1 className="text-2x1 font-bold">{props.children}</h1>
         <div className="px-3 w-72 py-1.5 border border-white/10  rounded-lg text-sm flex items-center gap-3">
             <Search className="size-4"/>
-            <input className="bg-transparent flex-1 outline-none" type="text" placeholder="Search..." />
+            <input className="bg-transparent flex-1 outline-none" type="text" placeholder={`search ${props.children}...`} />
         </div>    
     </div>
 )
