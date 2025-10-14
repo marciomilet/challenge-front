@@ -1,16 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import {useDropzone} from "react-dropzone";
 
 export function Upload() {
-    const [file, setFile] = useState<File | undefined>();
+
+    const onDrop = useCallback((acceptedFiles: File[]) => {
+        const file = new FileReader
+
+        file.onload = function() {
+
+        }
+        file.readAsDataURL(acceptedFiles[0])
+    }, [])
+    const {acceptedFiles, getRootProps, getInputProps, isDragActive} = useDropzone({
+        onDrop,
+        accept: {
+            'text/csv': ['.csv']
+        },
+        maxFiles: 1
+
+    })
+
 
     async function handleOnSubmit(e: React.SyntheticEvent) {
         e.preventDefault();
 
-        if (typeof file === 'undefined'){return}
+        if (typeof acceptedFiles[0] === 'undefined'){return}
         
         const formData = new FormData();
         
-        formData.append('file', file);
+        formData.append('file', acceptedFiles[0]);
 
         const results = await fetch('http://127.0.0.1:8000/api/upload/', {
             method: 'POST',
@@ -18,30 +36,21 @@ export function Upload() {
         }).then(response => response.json())
 
         console.log(results);
-        // setState('sent');
-    }
-
-     function handleOnChange(e: React.FormEvent<HTMLInputElement>) {
-        const target = e.target as HTMLInputElement & {
-            files: FileList;
-        }
-
-        setFile(target.files[0]);
-        console.log('file', file)
-    }   
+    } 
 
     return (
     <div>
         <h1 className="text-xl font-semibold mb-4 self-center">Upload de Usuários CSV</h1>
         <div className="flex flex-col items-center justify-center h-screen">
             <div className="p-6 rounded-2xl shadow-md w-96 text-center">
-                <input
-                type="file"
-                name="csv"
-                accept=".csv"
-                onChange={handleOnChange}
-                />
-
+                <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    {
+                    isDragActive ?
+                    <p>Drop the files here ...</p> :
+                    <p>Drag 'n' drop some files here, or click to select files</p>
+                    }
+                </div>
                 <button onClick={handleOnSubmit}>Enviar</button>
             </div>
         </div>
