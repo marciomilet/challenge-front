@@ -1,12 +1,22 @@
+import { CampaignsList } from "./components/campaigns/campaign-list"
 import { Header } from "./components/header"
-import { UsersList } from "./components/Users-list"
+import { Upload } from "./components/upload/upload"
+import { UsersList } from "./components/users/Users-list"
+
+ import { Routes, Route } from 'react-router-dom'
+
 
 export function App() {
   return (
-    <div className="max-w-[1216] mx-auto py-5 flex flex-col gap-5">
-      <Header />
-      <UsersList />
-    </div>
+    <> 
+    <Header />
+    <Routes>
+      <Route path="/" element={<UsersList />} />
+      <Route path="/users" element={<UsersList />} />
+      <Route path="/campaigns" element={<CampaignsList />} />
+      <Route path="/upload" element={<Upload />} />
+    </Routes>
+    </>
   )
 }
 
