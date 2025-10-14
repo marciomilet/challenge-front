@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import { Table } from "./table/table"
-import { TableCell } from "./table/table-cell"
-import { TableHeader } from "./table/table-header"
-import { TableRow } from "./table/table-row"
-import { TableTitleSearch } from "./table/table-title-search"
+import { Table } from "../table/table"
+import { TableCell } from "../table/table-cell"
+import { TableHeader } from "../table/table-header"
+import { TableRow } from "../table/table-row"
+import { TableTitleSearch } from "../table/table-title-search"
 
 interface User {
   id: number
@@ -22,7 +22,7 @@ export function UsersList() {
       .then((data) => {
         setUsers(data)
       })
-      .catch((error) => console.error("Erro ao buscar usuários:", error))
+      .catch((error) => console.error("Failed to get users", error))
   }, [])
 
   return (
