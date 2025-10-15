@@ -39,20 +39,24 @@ export function Upload() {
     } 
 
     return (
-    <div>
-        <h1 className="text-xl font-semibold mb-4 self-center">Upload de Usuários CSV</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center text-gray-100 px-4">
+        <h1 className="text-3xl font-bold mb-8 text-white tracking-wide">Users upload CSV</h1>
         <div className="flex flex-col items-center justify-center h-screen">
-            <div className="p-6 rounded-2xl shadow-md w-96 text-center">
-                <div {...getRootProps()}>
+            
+                <div {...getRootProps()} className={`w-full max-w-md border-2 border-dashed rounded-2xl p-10 text-center transition 
+                    ${isDragActive ? 'border-blue-400 bg-blue-900/30' : 'border-gray-700 bg-gray-800/40'} 
+                     hover:border-blue-500 hover:bg-gray-800/60 cursor-pointer`}>
                     <input {...getInputProps()} />
                     {
                     isDragActive ?
                     <p>Drop the files here ...</p> :
-                    <p>Drag 'n' drop some files here, or click to select files</p>
+                    <p> Drag 'n' drop some files here, or click to select files</p>
                     }
-                </div>
-                <button onClick={handleOnSubmit}>Enviar</button>
             </div>
+            <button
+                onClick={handleOnSubmit}
+                className="mt-6 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl 
+                shadow-md transition-all duration-200 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black">Send</button>
         </div>
     </div>
   );
