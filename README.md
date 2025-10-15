@@ -49,4 +49,4 @@ in should be running on
 
 `http://localhost:5173`
 
-but you can change that on:
+but you can change that on vite.cofing.ts
