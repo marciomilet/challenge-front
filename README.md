@@ -22,7 +22,7 @@ and it depends on a
 
  instance running on your machine
 
-## Instalation
+## Installation
 
   clone this repository using
 
@@ -49,4 +49,4 @@ in should be running on
 
 `http://localhost:5173`
 
-but you can change that on vite.cofing.ts
+but you can change that on vite.config.ts
